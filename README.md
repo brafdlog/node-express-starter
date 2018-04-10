@@ -1,1 +1,1 @@
-# app
+### Starter for a node express app based on the best practices defined [here](https://github.com/i0natan/nodebestpractices)
