@@ -1,10 +1,16 @@
 {
-    "plugins": ["node", "security", "mocha"],
-    "extends": ["google", "plugin:node/recommended", "plugin:security/recommended"],
-    "rules": {
-        "node/exports-style": ["error", "module.exports"],
-        "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
-        "comma-dangle": "off",
-        "mocha/no-exclusive-tests": "error"
-    }
+  "plugins": ["node", "security", "mocha", "prettier"],
+  "extends": [
+    "google",
+    "plugin:node/recommended",
+    "plugin:security/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "node/exports-style": ["error", "module.exports"],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+    "comma-dangle": "off",
+    "mocha/no-exclusive-tests": "error",
+    "prettier/prettier": "error"
+  }
 }
