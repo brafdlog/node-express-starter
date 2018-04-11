@@ -7,9 +7,11 @@
     "prettier"
   ],
   "rules": {
-    "node/exports-style": ["error", "module.exports"],
     "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
     "comma-dangle": "off",
+    "require-jsdoc": "off",
+
+    "node/exports-style": ["error", "module.exports"],
     "mocha/no-exclusive-tests": "error",
     "prettier/prettier": "error"
   }

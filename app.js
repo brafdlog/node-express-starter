@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 
 const errorHandler = require('./errorHandler');
-const index = require('./routes/index');
-const users = require('./routes/users');
+const index = require('./components/rootRoute');
+const users = require('./components/users/usersRoute');
 
 const app = express();
 
@@ -50,7 +50,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 
-  shouldExitProcess && process.exit(1);
+  if (shouldExitProcess) {
+    throw new Error(err);
+  }
 });
 
 process.on('unhandledRejection', reason => {

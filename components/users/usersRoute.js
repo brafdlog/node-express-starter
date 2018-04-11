@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router(); // eslint-disable-line new-cap
+const userDAO = require('./userDAO');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('user', { username: userDAO.getUsername() });
 });
 
 module.exports = router;
