@@ -53,14 +53,16 @@ app.use(function(err, req, res, next) {
   shouldExitProcess && process.exit(1);
 });
 
-process.on('unhandledRejection', (reason, p) => {
+process.on('unhandledRejection', reason => {
   // I just caught an unhandled promise rejection, since we already have fallback handler for unhandled errors (see below), let throw and let him handle that
   throw reason;
 });
 process.on('uncaughtException', error => {
   // I just received an error that was never handled, time to handle it and then decide whether a restart is needed
   const shouldExitProcess = errorHandler.handleError(error);
-  shouldExitProcess && process.exit(1);
+  if (shouldExitProcess) {
+    throw new Error(error);
+  }
 });
 
 module.exports = app;
