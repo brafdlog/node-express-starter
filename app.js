@@ -1,11 +1,12 @@
 const express = require('express');
 const path = require('path');
 // const favicon = require('serve-favicon');
-const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
+const morganLogger = require('morgan');
 
+const logger = require('./logger');
 const errorHandler = require('./errorHandler');
 const index = require('./components/rootRoute');
 const users = require('./components/users/usersRoute');
@@ -18,7 +19,8 @@ app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+// Make the morgan logger work with winston
+app.use(morganLogger('combined', { stream: logger.stream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

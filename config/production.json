@@ -1,3 +1,6 @@
 {
-
+  "env": {
+    "isProd": true,
+    "isDev": false
+  }
 }

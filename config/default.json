@@ -1,5 +1,13 @@
 {
-  "test": {
-    "dummy": 7
+  "env": {
+    "isProd": false,
+    "isDev": true
+  },
+  "errors": {
+    "exitOnError": true
+  },
+  "log": {
+    "maxFileSize": 5242880,
+    "maxFiles": 5
   }
 }
