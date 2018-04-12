@@ -5,13 +5,24 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 const morganLogger = require('morgan');
+const createNamespace = require('continuation-local-storage').createNamespace;
 
+const utils = require('./utils');
 const logger = require('./logger');
 const errorHandler = require('./errorHandler');
 const index = require('./components/rootRoute');
 const users = require('./components/users/usersRoute');
 
+const myRequest = createNamespace('my request');
 const app = express();
+
+// Assign a unique identifier to each request
+app.use(function(req, res, next) {
+  myRequest.run(function() {
+    myRequest.set('reqId', utils.generateUUID());
+    next();
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +30,7 @@ app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 // Make the morgan logger work with winston
 app.use(morganLogger('combined', { stream: logger.stream }));
 app.use(bodyParser.json());
