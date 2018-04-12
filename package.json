@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "DEBUG=myapp:* npm run run-server",
-    "test": "./node_modules/mocha/bin/mocha **/*-test.js",
+    "test": "./node_modules/mocha/bin/mocha './{,!(node_modules)/**}/*-test.js'",
     "run-server": "node ./bin/www",
     "lint": "node_modules/eslint/bin/eslint.js ."
   },
